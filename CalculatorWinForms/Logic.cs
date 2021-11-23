@@ -17,12 +17,15 @@ namespace CalculatorWinForms
     }
     public struct MathOperation
     {
-        public string Calc(string s)
+        // хранимое значение
+        public decimal m;
+
+        public string Calc(string s, string p)
         {
-            var p = "";
+            m = Convert.ToInt32(s);
+            s.Append(Express?.Replace('X', 'x').Replace("pow", "Math.Pow").Replace("sin", "Math.Sin").Replace("cos", "Math.Cos").Replace("log", "Math.Log").Replace("abs", "Math.Abs").Replace("ctg", "1/Math.Tan").Replace("tg", "Math.Tan").Replace("pi", "Math.PI").Replace("exp", "Math.Exp"));
 
-
-            return p.ToString();
+            return m.ToString();
         }
 
     }
