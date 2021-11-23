@@ -87,6 +87,7 @@ namespace CalculatorWinForms
             this.buttonPlus.TabIndex = 3;
             this.buttonPlus.Text = "+";
             this.buttonPlus.UseVisualStyleBackColor = true;
+            this.buttonPlus.Click += new System.EventHandler(this.butttonOperation_Click);
             // 
             // button2
             // 
@@ -186,7 +187,7 @@ namespace CalculatorWinForms
             this.button10.TabIndex = 13;
             this.button10.Text = ",";
             this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.buttonNumber_Click);
+            this.button10.Click += new System.EventHandler(this.buttonDS_Click);
             // 
             // buttonClear
             // 
@@ -206,6 +207,7 @@ namespace CalculatorWinForms
             this.buttonMinus.TabIndex = 15;
             this.buttonMinus.Text = "-";
             this.buttonMinus.UseVisualStyleBackColor = true;
+            this.buttonMinus.Click += new System.EventHandler(this.butttonOperation_Click);
             // 
             // buttonMult
             // 
@@ -215,6 +217,7 @@ namespace CalculatorWinForms
             this.buttonMult.TabIndex = 16;
             this.buttonMult.Text = "*";
             this.buttonMult.UseVisualStyleBackColor = true;
+            this.buttonMult.Click += new System.EventHandler(this.butttonOperation_Click);
             // 
             // buttonDiv
             // 
@@ -224,6 +227,7 @@ namespace CalculatorWinForms
             this.buttonDiv.TabIndex = 17;
             this.buttonDiv.Text = "/";
             this.buttonDiv.UseVisualStyleBackColor = true;
+            this.buttonDiv.Click += new System.EventHandler(this.butttonOperation_Click);
             // 
             // Form1
             // 
