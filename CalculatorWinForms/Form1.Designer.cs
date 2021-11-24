@@ -64,11 +64,11 @@ namespace CalculatorWinForms
             this.textBoxCulc.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxCulc.Location = new System.Drawing.Point(31, 52);
             this.textBoxCulc.Name = "textBoxCulc";
+            this.textBoxCulc.ReadOnly = true;
             this.textBoxCulc.Size = new System.Drawing.Size(254, 31);
             this.textBoxCulc.TabIndex = 1;
             this.textBoxCulc.Text = "0";
             this.textBoxCulc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBoxCulc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCulc_KeyPress);
             // 
             // buttonEquals
             // 
@@ -78,6 +78,7 @@ namespace CalculatorWinForms
             this.buttonEquals.TabIndex = 2;
             this.buttonEquals.Text = "=";
             this.buttonEquals.UseVisualStyleBackColor = true;
+            this.buttonEquals.Click += new System.EventHandler(this.Equals_Click);
             // 
             // buttonPlus
             // 

@@ -19,44 +19,42 @@ namespace CalculatorWinForms
         }
 
 
-        private void textBoxCulc_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-            //if (((e.KeyChar <= 47 || e.KeyChar >= 58) && e.KeyChar != 8 && (e.KeyChar <= 39 || e.KeyChar >= 46) && e.KeyChar != 47 && e.KeyChar != 61)
-            //    || !(Logic.DSCount(textBoxCulc.Text) < 1))
-            //{
-            //    e.Handled = true;
-            //}
-            var text = textBoxCulc.Text;
-
-            if (!(char.IsDigit(e.KeyChar) || (e.KeyChar.Equals(",")) && (!text.Contains(",")) && e.KeyChar.Equals(8)))
-            {
-                e.Handled = true;
-            }
-        }
         private void buttonNumber_Click(object sender, EventArgs e)
         {
-            var text = textBoxCulc.Text;
-
-            text += (sender as Button).Text;
-            if ((text.IndexOf("0") == 0) && (text.IndexOf(",") != 1) ) text = text.Remove(0, 1);
-
-            textBoxCulc.Text = text.ToString();
+            textBoxCulc.Text = Logic.EnterNomber((sender as Button).Text);
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
             textBoxCulc.Text = "0";
+            Logic.Clear();
         }
 
         private void butttonOperation_Click(object sender, EventArgs e)
         {
-            textBoxCulc.Text=Logic.ResultString(textBoxCulc.Text, (sender as Button).Text);
+            try
+            {
+                textBoxCulc.Text = Logic.EnterOper((sender as Button).Text);
+            }
+            catch 
+            {
+                textBoxCulc.Text = "Error";
+                foreach(var button in this.Controls.OfType<Button>())
+                {
+                    button.Enabled = false;
+                }
+                buttonClear.Enabled = true;
+            }
         }
 
         private void buttonDS_Click(object sender, EventArgs e)
         {
             if (Logic.DSCount(textBoxCulc.Text) < 1) textBoxCulc.Text += ",";
+        }
+
+        private void Equals_Click(object sender, EventArgs e)
+        {
+            textBoxCulc.Text = Logic.ResultString((sender as Button).Text);
         }
     }
 

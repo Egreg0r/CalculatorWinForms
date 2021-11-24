@@ -9,51 +9,108 @@ namespace CalculatorWinForms
 {
     public class Logic
     {
+        public static string ResultString (string p)
+        {
+            try
+            {
+                Calc();
+            }
+            catch {
+                return "Error";
+            }
+            edit = true;
+            return result.ToString();
+        }
+
+        public static string EnterOper (string p)
+        {
+            if (oper == "")
+            {
+                result = nomber;
+            }
+            else if (!edit)
+            {
+                ResultString(p);
+            }
+            oper = p;
+            edit = true;
+            return result.ToString();
+        }
+
+
+        public static string EnterNomber(string nom)
+        {
+            string resString = nomber.ToString();
+            if (!edit)
+            {
+                if (resString != "0")
+                    resString = resString + nom;
+                else
+                    resString = nom;
+            }
+            else
+            {
+                resString = nom;
+                edit = false;
+            }
+            nomber = Convert.ToDecimal(resString);
+            return resString;
+        }
+
+        public static void Clear()
+        {
+            result = 0;
+            nomber = 0;
+            oper = "";
+            edit = false;
+        }
+
+        /// <summary>
+        /// Подсчет колличества запятых в строке.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static int DSCount(string s)
         {
-            //string substr = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator[0].ToString();
             int count = (s.Length - s.Replace(",", "").Length) / ",".Length;
             return count;
         }
 
-        private static decimal Result = 0;
-        private static string oper;
 
-        public static string ResultString (string s, string p)
+
+        private static decimal result = 0;
+        private static decimal nomber = 0;
+        private static string oper = "";
+        private static bool edit = false;
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="res">first nomber</param>
+        /// <param name="nom">second nomber</param>
+        /// <param name="p"> operation</param>
+        /// <returns></returns>
+        private static void Calc()
         {
-            var mathOp = new MathOperation();
-            oper = p;
-            var nomber = Convert.ToDecimal(s);
-            Result = mathOp.Calc(nomber, oper);
-            return Result.ToString();
-        }
-
-    }
-    public struct MathOperation
-    {
-        // хранимое значение
-        private decimal m;
-
-        public decimal Calc(decimal s, string p)
-        {
-            var eq = s;
-            m = Convert.ToDecimal(s);
-            switch (p)
+            switch (oper)
             {
-                case "+": 
-                    eq = eq + m;
+                case "+":
+                    result = result + nomber;
                     break;
                 case "-":
-                    eq = eq - m;
+                    result = result - nomber;
                     break;
                 case "*":
-                    eq = eq * m;
+                    result = result * nomber;
                     break;
                 case "/":
-                    if (eq != 0) eq = eq / m;
+                    //if (nom != 0)
+                        if (result != 0) result = result / nomber;
                     break;
             }
-            return eq;
+
         }
 
     }
