@@ -23,12 +23,20 @@ namespace CalculatorWinForms
         {
             textBoxCulc.Text = Logic.EnterNomber((sender as Button).Text);
         }
+        private void buttonDS_Click(object sender, EventArgs e)
+        {
+            if (Logic.DSCount(textBoxCulc.Text) < 1) textBoxCulc.Text += (sender as Button).Text;
+            //    Logic.DSCount((sender as Button).Text);
+
+        }
+
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
             textBoxCulc.Text = "0";
             Logic.Clear();
         }
+
 
         private void butttonOperation_Click(object sender, EventArgs e)
         {
@@ -47,10 +55,6 @@ namespace CalculatorWinForms
             }
         }
 
-        private void buttonDS_Click(object sender, EventArgs e)
-        {
-            if (Logic.DSCount(textBoxCulc.Text) < 1) textBoxCulc.Text += ",";
-        }
 
         private void Equals_Click(object sender, EventArgs e)
         {

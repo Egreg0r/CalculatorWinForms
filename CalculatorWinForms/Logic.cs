@@ -26,7 +26,7 @@ namespace CalculatorWinForms
         {
             if (oper == "")
             {
-                result = nomber;
+                result = Convert.ToDecimal(nomber);
             }
             else if (!edit)
             {
@@ -40,10 +40,10 @@ namespace CalculatorWinForms
 
         public static string EnterNomber(string nom)
         {
-            string resString = nomber.ToString();
+            string resString = nomber;
             if (!edit)
             {
-                if (resString != "0")
+                if (resString != "0" & nom ==",")
                     resString = resString + nom;
                 else
                     resString = nom;
@@ -53,14 +53,14 @@ namespace CalculatorWinForms
                 resString = nom;
                 edit = false;
             }
-            nomber = Convert.ToDecimal(resString);
+            nomber = resString;
             return resString;
         }
 
         public static void Clear()
         {
             result = 0;
-            nomber = 0;
+            nomber = "0";
             oper = "";
             edit = false;
         }
@@ -79,7 +79,7 @@ namespace CalculatorWinForms
 
 
         private static decimal result = 0;
-        private static decimal nomber = 0;
+        private static string nomber = "0";
         private static string oper = "";
         private static bool edit = false;
 
@@ -94,20 +94,21 @@ namespace CalculatorWinForms
         /// <returns></returns>
         private static void Calc()
         {
+            var nom = Convert.ToDecimal(nomber);
             switch (oper)
             {
                 case "+":
-                    result = result + nomber;
+                    result = result + nom;
                     break;
                 case "-":
-                    result = result - nomber;
+                    result = result - nom;
                     break;
                 case "*":
-                    result = result * nomber;
+                    result = result * nom;
                     break;
                 case "/":
                     //if (nom != 0)
-                        if (result != 0) result = result / nomber;
+                        if (result != 0) result = result / nom;
                     break;
             }
 
