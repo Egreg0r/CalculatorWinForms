@@ -38,23 +38,23 @@ namespace CalculatorWinForms
         private void butttonOperation_Click(object sender, EventArgs e)
         {
             textBoxCulc.Text = Logic.EnterOper((sender as Button).Text);
-            checkError(textBoxCulc.Text);
+            if (textBoxCulc.Text == "Error")
+                Error();
         }
 
 
         private void Equals_Click(object sender, EventArgs e)
         {
             textBoxCulc.Text = Logic.ResultString();
-            checkError(textBoxCulc.Text);
+            if (textBoxCulc.Text == "Error")
+                Error();
         }
 
         /// <summary>
         /// Блокировка ввода символов в случае ошибки. 
         /// </summary>
-        /// <param name="s"></param>
-        private void checkError(string s)
+        private void Error()
         {
-            if (s == "Error")
             {
                 foreach (var button in this.Controls.OfType<Button>())
                 {
@@ -63,6 +63,16 @@ namespace CalculatorWinForms
                 buttonClear.Enabled = true;
             }
 
+        }
+
+        private void textBoxCulc_TextChanged(object sender, EventArgs e)
+        {
+            if (this.Text.Length > 21) Error();
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            textBoxCulc.Text = Logic.Backspace();
         }
     }
 

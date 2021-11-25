@@ -47,6 +47,7 @@ namespace CalculatorWinForms
             this.buttonMinus = new System.Windows.Forms.Button();
             this.buttonMult = new System.Windows.Forms.Button();
             this.buttonDiv = new System.Windows.Forms.Button();
+            this.buttonBack = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -69,10 +70,11 @@ namespace CalculatorWinForms
             this.textBoxCulc.TabIndex = 1;
             this.textBoxCulc.Text = "0";
             this.textBoxCulc.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxCulc.TextChanged += new System.EventHandler(this.textBoxCulc_TextChanged);
             // 
             // buttonEquals
             // 
-            this.buttonEquals.Location = new System.Drawing.Point(245, 136);
+            this.buttonEquals.Location = new System.Drawing.Point(199, 228);
             this.buttonEquals.Name = "buttonEquals";
             this.buttonEquals.Size = new System.Drawing.Size(40, 40);
             this.buttonEquals.TabIndex = 2;
@@ -202,7 +204,7 @@ namespace CalculatorWinForms
             // 
             // buttonMinus
             // 
-            this.buttonMinus.Location = new System.Drawing.Point(199, 182);
+            this.buttonMinus.Location = new System.Drawing.Point(245, 136);
             this.buttonMinus.Name = "buttonMinus";
             this.buttonMinus.Size = new System.Drawing.Size(40, 40);
             this.buttonMinus.TabIndex = 15;
@@ -212,7 +214,7 @@ namespace CalculatorWinForms
             // 
             // buttonMult
             // 
-            this.buttonMult.Location = new System.Drawing.Point(199, 228);
+            this.buttonMult.Location = new System.Drawing.Point(199, 182);
             this.buttonMult.Name = "buttonMult";
             this.buttonMult.Size = new System.Drawing.Size(40, 40);
             this.buttonMult.TabIndex = 16;
@@ -222,7 +224,7 @@ namespace CalculatorWinForms
             // 
             // buttonDiv
             // 
-            this.buttonDiv.Location = new System.Drawing.Point(199, 274);
+            this.buttonDiv.Location = new System.Drawing.Point(245, 182);
             this.buttonDiv.Name = "buttonDiv";
             this.buttonDiv.Size = new System.Drawing.Size(40, 40);
             this.buttonDiv.TabIndex = 17;
@@ -230,11 +232,22 @@ namespace CalculatorWinForms
             this.buttonDiv.UseVisualStyleBackColor = true;
             this.buttonDiv.Click += new System.EventHandler(this.butttonOperation_Click);
             // 
+            // buttonBack
+            // 
+            this.buttonBack.Location = new System.Drawing.Point(245, 228);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(40, 40);
+            this.buttonBack.TabIndex = 18;
+            this.buttonBack.Text = "<-";
+            this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(321, 343);
+            this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonDiv);
             this.Controls.Add(this.buttonMult);
             this.Controls.Add(this.buttonMinus);
@@ -280,6 +293,7 @@ namespace CalculatorWinForms
         private System.Windows.Forms.Button buttonMinus;
         private System.Windows.Forms.Button buttonMult;
         private System.Windows.Forms.Button buttonDiv;
+        private System.Windows.Forms.Button buttonBack;
     }
 }
 

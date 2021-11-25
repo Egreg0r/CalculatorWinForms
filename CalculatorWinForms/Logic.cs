@@ -63,6 +63,13 @@ namespace CalculatorWinForms
             return nomber;
         }
 
+        public static string Backspace ()
+        {
+            nomber = nomber.Remove(nomber.Length - 1);
+            if (nomber == "") nomber = "0"; 
+            return nomber;
+        }
+
         
         public static void Clear()
         {
