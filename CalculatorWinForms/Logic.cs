@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CalculatorWinForms
 {
     public class Logic
     {
-        public static string ResultString (string p)
+        /// <summary>
+        /// =
+        /// </summary>
+        /// <returns>результат вычислений</returns>
+        public static string ResultString()
         {
             try
             {
@@ -22,41 +21,49 @@ namespace CalculatorWinForms
             return result.ToString();
         }
 
-        public static string EnterOper (string p)
+        /// <summary>
+        /// Ввод операции
+        /// </summary>
+        /// <param name="p">символ операции</param>
+        /// <returns></returns>
+        public static string EnterOper(string p)
         {
+
             if (oper == "")
             {
                 result = Convert.ToDecimal(nomber);
             }
             else if (!edit)
             {
-                ResultString(p);
+                ResultString();
             }
             oper = p;
             edit = true;
+            nomber = result.ToString();
             return result.ToString();
         }
 
-
+        
         public static string EnterNomber(string nom)
         {
-            string resString = nomber;
             if (!edit)
             {
-                if (resString != "0" & nom ==",")
-                    resString = resString + nom;
+                if (nomber != "0")
+                {
+                    nomber += nom;
+                }
                 else
-                    resString = nom;
+                    nomber = checkZero(nom);
             }
             else
             {
-                resString = nom;
+                nomber = checkZero(nom);
                 edit = false;
             }
-            nomber = resString;
-            return resString;
+            return nomber;
         }
 
+        
         public static void Clear()
         {
             result = 0;
@@ -70,20 +77,19 @@ namespace CalculatorWinForms
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static int DSCount(string s)
+        public static bool DSCount(string s)
         {
             int count = (s.Length - s.Replace(",", "").Length) / ",".Length;
-            return count;
+            if ((count < 1) || edit )
+                return true;
+            else
+                return false;
         }
-
-
 
         private static decimal result = 0;
         private static string nomber = "0";
         private static string oper = "";
         private static bool edit = false;
-
-
 
         /// <summary>
         /// 
@@ -108,11 +114,19 @@ namespace CalculatorWinForms
                     break;
                 case "/":
                     //if (nom != 0)
-                        if (result != 0) result = result / nom;
+                    if (result != 0) result = result / nom;
                     break;
             }
 
         }
+
+        private static string checkZero (string nom)
+        {
+            if (nom == ",")
+                nom = "0" + nom;
+            return nom;
+        }
+
 
     }
 }
